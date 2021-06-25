@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{926FEA3D-D143-4509-840F-F3F0EB60C3E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YFPos.Utils</RootNamespace>
+    <AssemblyName>YFPos.Utils</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\UI\YFPos.Client\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\..\Lib\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DataAccess\Payment\YFPos.External.Payment.WeChat\Lib\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\UI\YFPos.Client\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\UI\YFPos.Client\bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Microsoft\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Microsoft\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Microsoft\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SevenZipSharp">
+      <HintPath>..\..\Lib\SevenZipSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base62.cs" />
+    <Compile Include="DataTableToModel.cs" />
+    <Compile Include="DllImportUtils.cs" />
+    <Compile Include="DynObj.cs" />
+    <Compile Include="EncryptDecryptHelper.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="ExcelUtils.cs" />
+    <Compile Include="ExceptionHelper.cs" />
+    <Compile Include="ExtensionMethod.cs" />
+    <Compile Include="FileOperHelper.cs" />
+    <Compile Include="HashHelper.cs" />
+    <Compile Include="HostMacIp.cs" />
+    <Compile Include="HttpHelper.cs" />
+    <Compile Include="HttpSignatureByEC.cs" />
+    <Compile Include="ImageUtility.cs" />
+    <Compile Include="JsonTimeConverter.cs" />
+    <Compile Include="NetHelper.cs" />
+    <Compile Include="Protocol\Head.cs" />
+    <Compile Include="Protocol\Notify.cs" />
+    <Compile Include="Protocol\NotifyBody.cs" />
+    <Compile Include="Protocol\Reply.cs" />
+    <Compile Include="Protocol\RequstBody.cs" />
+    <Compile Include="Protocol\RequstBodyPack.cs" />
+    <Compile Include="Protocol\Sender.cs" />
+    <Compile Include="Protocol\SingleReq.cs" />
+    <Compile Include="Protocol\SingleReqPack.cs" />
+    <Compile Include="Protocol\SingleRsp.cs" />
+    <Compile Include="Protocol\SingleRspPack.cs" />
+    <Compile Include="ScreenUtils.cs" />
+    <Compile Include="SerialHelper.cs" />
+    <Compile Include="SevenZipHelper.cs" />
+    <Compile Include="ChineseHelper.cs" />
+    <Compile Include="ConfigurationUpdater.cs" />
+    <Compile Include="FtpHelper.cs" />
+    <Compile Include="ServiceHelper.cs" />
+    <Compile Include="SocketServer\AsySocket.cs" />
+    <Compile Include="SocketServer\IClinet.cs" />
+    <Compile Include="SocketServer\IServerOnlineObserver.cs" />
+    <Compile Include="SocketServer\ServerResult.cs" />
+    <Compile Include="SocketServer\SockedServer.cs" />
+    <Compile Include="SocketServer\SocketBaseReq.cs" />
+    <Compile Include="SocketServer\SocketBaseRsp.cs" />
+    <Compile Include="SocketServer\SocketClient.cs" />
+    <Compile Include="SocketServer\SocketReqbody.cs" />
+    <Compile Include="SocketServer\SocketReqPack.cs" />
+    <Compile Include="SocketServer\SocketReqHead.cs" />
+    <Compile Include="SystemHelper.cs" />
+    <Compile Include="TimeHelper.cs" />
+    <Compile Include="GenericBuffer.cs" />
+    <Compile Include="GuidHelper.cs" />
+    <Compile Include="GZipHelper.cs" />
+    <Compile Include="HttpClient.cs" />
+    <Compile Include="IDCardReader.cs" />
+    <Compile Include="IniUtils.cs" />
+    <Compile Include="JsonConvertUtils.cs" />
+    <Compile Include="JsonHelper.cs" />
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="ModuleCast.cs" />
+    <Compile Include="Network.cs" />
+    <Compile Include="NetworkHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExpressionCalculator.cs" />
+    <Compile Include="RegUtils.cs" />
+    <Compile Include="StringUtils.cs" />
+    <Compile Include="Win32Support.cs" />
+    <Compile Include="WindowHelper.cs" />
+    <Compile Include="WindowOwnerUtils.cs" />
+    <Compile Include="WindowServiceUtils.cs" />
+    <Compile Include="XmlSerializerHelper.cs" />
+    <Compile Include="YBHttpUploadHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Lib\CVR\sdtapi.dll">
+      <Link>CVR\sdtapi.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Lib\CVR\termb.dll">
+      <Link>CVR\termb.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Lib\CVR\UnPack.dll">
+      <Link>CVR\UnPack.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="7z.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
