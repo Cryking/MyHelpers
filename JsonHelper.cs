@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -38,9 +37,7 @@ namespace YFPos.Utils
             catch (Exception ex)
             {
                 ex.SaveLog();
-                bool rethrow = ExceptionPolicy.HandleException(ex, "Policy");
-                if (rethrow)
-                    throw;
+                throw;
             }
             return result;
         }
@@ -80,9 +77,8 @@ namespace YFPos.Utils
             }
             catch (Exception ex)
             {
-                bool rethrow = ExceptionPolicy.HandleException(ex, "Policy");
-                if (rethrow)
-                    throw;
+                ex.SaveLog();
+                throw;
             }
             return result;
         }

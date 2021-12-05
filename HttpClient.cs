@@ -1,15 +1,13 @@
-﻿using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
-using System.Text;
-using YFPos.Utils.Protocol;
-using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace YFPos.Utils
 {
@@ -456,79 +454,6 @@ namespace YFPos.Utils
             }
             return content;
         }
-
-        /// <summary>
-        /// 请求并获取Json应答
-        /// </summary>
-        /// <param name="serverPortal"></param>
-        /// <param name="methodName"></param>
-        /// <param name="argsStr"></param>
-        /// <returns></returns>
-        public static string GetJsonContent(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-            //请求对象
-            var req = new RequstBodyPack() { body = new RequstBody() { id = "11", method = methodName, args = argsStr } };
-            //将对象转化为Json字符
-            string jsonString = JsonHelper.ObjectToJson(req);
-            //请求地址
-            string url = string.Format("{0}?request={1}", serverPortal, jsonString);
-            LogHelper.WriteLog(LogCategorys.HTTP_JSON, "请求url: {0}", url);
-            //返回请求对象               
-            return GetContent(url, timeOut);
-        }
-
-        /// <summary>
-        /// 请求并获取协议应对对象
-        /// </summary>
-        /// <param name="serverPortal"></param>
-        /// <param name="methodName"></param>
-        /// <param name="argsStr"></param>
-        /// <returns></returns>
-        public static SingleRsp GetSingleRsp(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-            string jsonContent = GetJsonContent(serverPortal, methodName, argsStr, timeOut);
-            //返回请求应答对象               
-            return JsonHelper.JsonToObject<SingleRsp>(jsonContent);
-        }
-
-        public static SingleRsp PostSingleRsp(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-
-            string jsonContent = PostJsonContent(serverPortal, methodName, argsStr, timeOut);
-            //返回请求应答对象               
-            return JsonHelper.JsonToObject<SingleRsp>(jsonContent);
-        }
-        public static SingleRsp PostSingleRspUrlEncode(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-
-            string jsonContent = PostJsonContentUrlEncode(serverPortal, methodName, argsStr, timeOut);
-            //返回请求应答对象               
-            return JsonHelper.JsonToObject<SingleRsp>(jsonContent);
-        }
-
-        public static SingleRsp PostSingleRsp2(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-            //请求对象
-            var req = new RequstBodyPack() { body = new RequstBody() { id = "11", method = methodName, args = argsStr } };
-            //将对象转化为Json字符
-            string jsonString = JsonHelper.ObjectToJson(req);
-            //请求地址
-            string url = string.Format("{0}?request={1}", serverPortal, jsonString);
-            LogHelper.WriteLog(LogCategorys.HTTP_JSON, "请求url: {0}", url);
-            //返回请求对象      
-            string jsonContent = string.Empty;
-            try
-            {
-                jsonContent = PostHttp(serverPortal, string.Format("request={0}", jsonString));
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(string.Format("{0} {1}", ex.Message, url));
-            }
-            return JsonHelper.JsonToObject<SingleRsp>(jsonContent);
-
-        }
-
         public static string PostHttp(string url, string body, string contentType = "application/x-www-form-urlencoded", int timeOut = 60000)
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -561,15 +486,13 @@ namespace YFPos.Utils
         /// <param name="methodName"></param>
         /// <param name="argsStr"></param>
         /// <returns></returns>
-        public static string PostJsonContent(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
+        public static string PostJsonContent(string url, object req, int timeOut = 60000)
         {
-            //请求对象
-            var req = new RequstBodyPack() { body = new RequstBody() { id = "11", method = methodName, args = argsStr } };
-            //将对象转化为Json字符
-            //string jsonString = JsonHelper.ObjectToJson(req);
-            //请求地址
-            //string url = string.Format("{0}?request={1}", serverPortal, jsonString);
-            JsonSerializerSettings jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, ContractResolver = new CamelCasePropertyNamesContractResolver() };
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
 
             var str = JsonConvertUtils.ObjToJson(req, Formatting.None, jsonSetting);
 
@@ -578,7 +501,7 @@ namespace YFPos.Utils
                 ContentType = "application/x-www-form-urlencoded",
                 Method = "POST",
                 Postdata = "request=" + str,
-                URL = serverPortal,
+                URL = url,
                 Timeout = timeOut,
                 Encoding = httpEncoding,
                 PostEncoding = httpEncoding,
@@ -586,45 +509,6 @@ namespace YFPos.Utils
             var helper = new HttpHelper();
             var result = helper.GetHtml(item).Html;
             return result;
-        }
-        /// <summary>
-        /// UrlEncode 请求并获取Json应答
-        /// </summary>
-        /// <param name="serverPortal"></param>
-        /// <param name="methodName"></param>
-        /// <param name="argsStr"></param>
-        /// <returns></returns>
-        public static string PostJsonContentUrlEncode(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-            //请求对象
-            var req = new RequstBodyPack() { body = new RequstBody() { id = "11", method = methodName, args = argsStr } };
-            //将对象转化为Json字符
-            //string jsonString = JsonHelper.ObjectToJson(req);
-            //请求地址
-            //string url = string.Format("{0}?request={1}", serverPortal, jsonString);
-            JsonSerializerSettings jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, ContractResolver = new CamelCasePropertyNamesContractResolver() };
-
-            var str = JsonConvertUtils.ObjToJson(req, Formatting.None, jsonSetting);
-            var str2 = System.Web.HttpUtility.UrlEncode(str);
-            var item = new HttpItem()
-            {
-                ContentType = "application/x-www-form-urlencoded",
-                Method = "POST",
-                Postdata = "request=" + str2,
-                URL = serverPortal,
-                Timeout = timeOut,
-                Encoding = httpEncoding,
-                PostEncoding = httpEncoding,
-            };
-            var helper = new HttpHelper();
-            var result = helper.GetHtml(item).Html;
-            return result;
-        }
-        public static T GetObj<T>(string serverPortal, string methodName, string argsStr, int timeOut = 60000)
-        {
-            SingleRsp rsp = GetSingleRsp(serverPortal, methodName, argsStr, timeOut);
-            //转换成返回对象            
-            return JsonConvertUtils.JsonToObject<T>(rsp.body.result);//JsonHelper.JsonToObject<T>(rsp.body.result);
         }
         #endregion
 

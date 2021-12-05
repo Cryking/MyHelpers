@@ -1,0 +1,7 @@
+D:\Code\github\Cryking\MyHelpers\obj\Debug\DotNetUtils.csproj.CoreCompileInputs.cache
+D:\Code\github\Cryking\MyHelpers\obj\Debug\DotNetUtils.csproj.AssemblyReference.cache
+D:\Code\github\Cryking\MyHelpers\obj\Debug\DotNetUtils.csproj.CopyComplete
+D:\Code\github\Cryking\MyHelpers\obj\Debug\DotNetUtils.dll
+D:\Code\github\Cryking\MyHelpers\obj\Debug\DotNetUtils.pdb
+D:\Code\github\Cryking\MyHelpers\bin\Debug\DotNetUtils.dll
+D:\Code\github\Cryking\MyHelpers\bin\Debug\DotNetUtils.pdb

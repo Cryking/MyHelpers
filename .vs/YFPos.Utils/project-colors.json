@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    },
+    "926fea3d-d143-4509-840f-f3f0eb60c3e2": {
+      "ProjectGuid": "926fea3d-d143-4509-840f-f3f0eb60c3e2",
+      "DisplayName": "DotNetUtils",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

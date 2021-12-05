@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Threading;
-using Microsoft.Practices.EnterpriseLibrary.Logging;
-using System.Diagnostics;
 
 namespace YFPos.Utils
 {
@@ -38,10 +33,7 @@ namespace YFPos.Utils
     /// </summary>
     public class LogHelper
     {
-        public static string IP = "0.0.0.0";
-        public static string MDBH = "";
         static readonly object objToLock = new object();
-        static readonly log4net.ILog logEXCEPTION = log4net.LogManager.GetLogger("logEXCEPTION");
         /// <summary>
         /// 如果当前工作目录不为程序启动目录，则设置到程序启动目录
         /// </summary>
@@ -121,21 +113,9 @@ namespace YFPos.Utils
         /// <param name="logCategory">日志类别(参考EnumLogCategory)</param>
         /// <param name="format">格式化字符串</param>
         /// <param name="arg">参数</param>
-        public static void WriteLog(LogCategorys logCategorybase, string formatbase)
+        public static void WriteLog(LogCategorys logCategory, string format)
         {
-            //获取调用日志方法堆栈信息，找出非LogHelper.cs 结尾方法
-            //暂时屏蔽 如需准确定位错误时开启
-            //Func<string> getFuncInfo = () =>
-            //{
-            //     StackTrace st = new StackTrace(true);
-            //     var temp = st.GetFrames().Where(p => p.GetFileName()!= st.GetFrame(0).GetFileName()) ==null?
-            //     st.GetFrame(1): st.GetFrames().Where(p => p.GetFileName() != st.GetFrame(0).GetFileName()).First();
-            //     return string.Format("{0}:{1}", temp.GetFileName(), temp.GetFileLineNumber());
-            //};
 
-            //原方法包装便于复用
-            Action<LogCategorys, string> defaultLog = (logCategory, format) =>
-            {
                 //异步写文件,提高速度
                 ThreadPool.QueueUserWorkItem(s =>
                {
@@ -175,23 +155,7 @@ namespace YFPos.Utils
                            Console.WriteLine("Write Log Error:{0}", e.Message);
                        }
                    }
-               });
-            };
-       
-   
-             //定义错误选择器，根据错误类型拆分方法
-             switch (logCategorybase){
-                case LogCategorys.EXCEPTION:
-                    log4net.LogicalThreadContext.Properties["host"] = $"{IP}-{MDBH}";
-                    log4net.LogicalThreadContext.Properties["timestamp"] = TimeHelper.GetTimestampMs();
-                    
-                    logEXCEPTION.Error(formatbase);
-                     break;
-                default:
-                     defaultLog(logCategorybase, formatbase);
-                     break;
-             }
-              
+               });              
         }
 
         #region 废弃代码

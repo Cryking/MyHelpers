@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
-using System.Text.RegularExpressions;
-using LitJson;
-using Newtonsoft.Json.Serialization;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace YFPos.Utils
@@ -111,18 +107,6 @@ namespace YFPos.Utils
                 deserializedProduct = JsonConvert.DeserializeObject<T>(json);
             }
 
-            return deserializedProduct;
-        }
-
-        /// <summary>
-        /// LitJson包JSON转对象
-        /// </summary>
-        /// <typeparam name="T">类型</typeparam>
-        /// <param name="json">json字符串</param>
-        /// <returns></returns>
-        public static T ToObject<T>(string json)
-        {
-            T deserializedProduct = JsonMapper.ToObject<T>(json);
             return deserializedProduct;
         }
 

@@ -1,0 +1,2 @@
+D:\Code\github\Cryking\MyHelpers\obj\Debug\YFPos.Utils.csproj.AssemblyReference.cache
+D:\Code\github\Cryking\MyHelpers\obj\Debug\YFPos.Utils.csproj.CoreCompileInputs.cache
